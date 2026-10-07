@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --negro: #0D0D0D;
+  --blanco: #F2F2F2;
+  --gris: #777C82;
+  --verde: #164A3A;
+  --azul-e: #1464F4;
+  --azul-h: #A8D8E8;
+
+  --bg: var(--negro);
+  --text: var(--blanco);
+  --border: rgba(119, 124, 130, 0.25);
+  --card-bg: rgba(119, 124, 130, 0.05);
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--negro);
+  color: var(--blanco);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  overflow-x: hidden;
+}
+
+/* Ajuste completo del contenedor principal */
+#root {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-inline: none;
+  text-align: left;
+}
+
+/* Animaciones */
+@keyframes scaleUp {
+  0% { opacity: 0; transform: scale(0.98) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: translateY(-15px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.app-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+h1, h2 {
+  color: var(--azul-h);
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 10px;
+}
+
+/* Tarjetas */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  width: 100%;
+}
+
+.card:hover {
+  border-color: rgba(168, 216, 232, 0.3);
+}
+
+/* Formulario */
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+input, select {
+  width: 100%;
+  background: rgba(13, 13, 13, 0.8);
+  color: var(--blanco);
+  border: 1px solid var(--gris);
+  padding: 12px 16px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--azul-e);
+  box-shadow: 0 0 0 3px rgba(20, 100, 244, 0.25);
+}
+
+form > button[type="submit"] {
+  grid-column: 1 / -1;
+  justify-self: center;
+  min-width: 240px;
+  margin-top: 10px;
+}
+
+/* Botones principales */
+button {
+  background: var(--azul-e);
+  color: var(--blanco);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: var(--azul-h);
+  color: var(--negro);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 216, 232, 0.25);
+}
+
+/* =========================================
+   TABLA FLUIDA Y COLUMNAS PROPORCIONALES
+========================================= */
+.table-container {
+  width: 100%;
+  overflow-x: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(13, 13, 13, 0.4);
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  white-space: normal;
+}
+
+/* Ancho proporcional por columna para garantizar espacio suficiente */
+th:nth-child(1) { width: 14%; } /* Estudiante */
+th:nth-child(2) { width: 14%; } /* Producto */
+th:nth-child(3) { width: 10%; } /* Cantidad */
+th:nth-child(4) { width: 11%; } /* Precio */
+th:nth-child(5) { width: 11%; } /* Total */
+th:nth-child(6) { width: 20%; } /* Fecha */
+th:nth-child(7) { width: 20%; } /* Acciones */
+
+th, td {
+  padding: 14px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+th {
+  background: rgba(119, 124, 130, 0.1);
+  color: var(--azul-h);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+tbody tr {
+  transition: background 0.25s ease;
+}
+
+tbody tr:hover {
+  background: rgba(22, 74, 58, 0.25);
+}
+
+/* =========================================
+   BOTONES DE TABLA (TAMAÑO 100% IDÉNTICO)
+========================================= */
+.acciones-btn {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide el espacio en 2 partes exactas */
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+}
+
+button.edit, button.danger {
+  width: 100%;
+  height: 32px; /* Garantiza exactamente el mismo alto */
+  padding: 0;   /* Mismo centrado para ambos */
+  border-radius: 6px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+button.edit {
+  background: rgba(20, 100, 244, 0.15);
+  border: 1px solid var(--azul-e);
+  color: var(--azul-h);
+}
+
+button.edit:hover {
+  background: var(--azul-e);
+  color: var(--blanco);
+}
+
+button.danger {
+  background: rgba(119, 124, 130, 0.15);
+  border: 1px solid var(--gris);
+  color: var(--gris);
+}
+
+button.danger:hover {
+  background: rgba(255, 74, 74, 0.2);
+  border-color: #ff4a4a;
+  color: #ff4a4a;
+}
+
+/* Notificación tipo Toast */
+.notificacion {
+  background: linear-gradient(135deg, var(--verde), #0e3025);
+  color: var(--blanco);
+  padding: 14px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid rgba(168, 216, 232, 0.2);
+  animation: popIn 0.4s ease forwards;
+}
